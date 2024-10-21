@@ -94,12 +94,11 @@ namespace WebApplication1.Services
             return item?.ToDictionaryDto(); 
         }
 
-        public async Task AddAsync(CreateDictionaryRequestDto dto)
+        public async Task<DictionaryItem> AddAsync(CreateDictionaryRequestDto dto)
         {
             
             var newItem = new DictionaryItem
             {
-                Id = dto.Id, 
                 Name = dto.Name,
                 BeginDate = dto.BeginDate.ToUniversalTime(),
                 Code = dto.Code,
@@ -109,6 +108,8 @@ namespace WebApplication1.Services
     
             _context.Add(newItem);
             await _context.SaveChangesAsync();
+            
+            return newItem;
         }
 
         public async Task UpdateAsync(UpdateDictionaryRequestDto dto)

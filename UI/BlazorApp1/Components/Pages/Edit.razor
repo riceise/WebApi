@@ -1,0 +1,55 @@
+﻿@page "/editItem/{id:int}"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@using Share.DTOs
+@using BlazorApp1.Components.Helper
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+    private UpdateDictionaryRequestDto updateModel = new UpdateDictionaryRequestDto();
+
+    protected override async Task OnInitializedAsync()
+    {
+        updateModel = await Http.GetFromJsonAsync<UpdateDictionaryRequestDto>($"{ApiHelper.BaseApiUrl}/Api/{id}");
+    }
+
+    private async Task UpdateItem()
+    {
+		var response = await Http.PutAsJsonAsync($"{ApiHelper.BaseApiUrl}/Api/Edit/{id}", updateModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/editItem");
+        }
+    }
+}
+
+<h3>Edit Dictionary Item</h3>
+
+<EditForm Model="updateModel" OnValidSubmit="UpdateItem">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Name:</label>
+        <InputText id="name" @bind-Value="updateModel.Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Begin Date:</label>
+        <InputDate id="beginDate" @bind-Value="updateModel.BeginDate" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Code:</label>
+        <InputText id="code" @bind-Value="updateModel.Code" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>End Date:</label>
+        <InputDate id="endDate" @bind-Value="updateModel.EndDate" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</EditForm>

@@ -1,0 +1,83 @@
+﻿@page "/search"
+@inject HttpClient Http
+@using Share.DTOs
+@using BlazorApp1.Components.Helper
+@rendermode InteractiveServer
+
+<h3>Поиск элемента по ID</h3>
+
+<div class="form-group">
+    <label for="Id">Введите ID элемента:</label>
+    <InputNumber @bind-Value="Id" id="Id" class="form-control" />
+</div>
+
+<button class="btn btn-primary" @onclick="SearchItem">Найти элемент</button>
+
+@if (isLoading)
+{
+    <p>Загрузка...</p>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+@if (item != null)
+{
+    <h4>Найденный элемент:</h4>
+    <div>
+        <p><strong>Name:</strong> @item.Name</p>
+        <p><strong>Code:</strong> @item.Code</p>
+        <p><strong>Begin Date:</strong> @item.BeginDate.ToString("yyyy-MM-dd")</p>
+        <p><strong>End Date:</strong> @item.EndDate.ToString("yyyy-MM-dd")</p>
+    </div>
+}
+
+@code {
+    private int Id;
+    private DictionaryDto? item;
+    private string errorMessage;
+    private bool isLoading;
+
+    private async Task SearchItem()
+    {
+        if (Id <= 0)
+        {
+            errorMessage = "Пожалуйста, введите корректный ID.";
+            return;
+        }
+
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+
+            var response = await Http.GetAsync($"{ApiHelper.BaseApiUrl}/api/{Id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                item = await response.Content.ReadFromJsonAsync<DictionaryDto>();
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                errorMessage = "Элемент не найден.";
+                item = null;
+            }
+            else
+            {
+                errorMessage = $"Ошибка при поиске элемента: {response.StatusCode}";
+                item = null;
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Произошла ошибка: {ex.Message}";
+            item = null;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

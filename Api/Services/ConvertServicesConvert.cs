@@ -81,10 +81,8 @@ namespace WebApplication1.Services
 
             try
             {
-                // 1. Очищаем таблицу DictionaryItems
                 await _context.DictionaryItems.ExecuteDeleteAsync(); 
 
-                // 2. Добавляем новые данные
                 const int batchSize = 100;
                 for (int i = 0; i < dictionaryItems.Count; i += batchSize)
                 {

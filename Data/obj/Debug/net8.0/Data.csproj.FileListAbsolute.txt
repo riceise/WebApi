@@ -15,3 +15,4 @@ C:\Users\nabiu\RiderProjects\WebApplication1\Data\obj\Debug\net8.0\refint\Data.d
 C:\Users\nabiu\RiderProjects\WebApplication1\Data\obj\Debug\net8.0\Data.pdb
 C:\Users\nabiu\RiderProjects\WebApplication1\Data\obj\Debug\net8.0\Data.genruntimeconfig.cache
 C:\Users\nabiu\RiderProjects\WebApplication1\Data\obj\Debug\net8.0\ref\Data.dll
+C:\Users\nabiu\RiderProjects\WebApplication1\Data\obj\Debug\net8.0\Data.sourcelink.json

@@ -1,0 +1,74 @@
+﻿@page "/viewAll"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@using BlazorApp1.Components.Helper
+@using Share.DTOs
+
+<h3>Dictionary Items</h3>
+
+@if (dictionaryItems == null)
+{
+<p><em>Loading...</em></p>
+}
+else
+{
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Begin Date</th>
+        <th>End Date</th>
+        <th>Code</th>
+        <th>Comments</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in dictionaryItems)
+    {
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.Name</td>
+        <td>@item.BeginDate</td>
+        <td>@item.EndDate</td>
+        <td>@item.Code</td>
+        <td>@item.Comments</td>
+        <td>
+            <button @onclick="() => DeleteItem(item.Id)" class="btn btn-danger">Delete</button>
+            <button @onclick="() => EditItem(item.Id)" class="btn btn-primary">Edit</button>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+}
+
+@code {
+	private List<DictionaryDto> dictionaryItems;
+
+	protected override async Task OnInitializedAsync()
+	{
+	dictionaryItems = await Http.GetFromJsonAsync<List<DictionaryDto>>($"{ApiHelper.BaseApiUrl}/All");
+	}
+
+	private async Task DeleteItem(int id)
+	{
+		var response = await Http.DeleteAsync($"{ApiHelper.BaseApiUrl}/Api/Delete/{id}");
+
+		if (response.IsSuccessStatusCode)
+		{
+			dictionaryItems = await Http.GetFromJsonAsync<List<DictionaryDto>>($"{ApiHelper.BaseApiUrl}/All");
+			await OnInitializedAsync();
+		}
+		else
+		{
+			Console.WriteLine("Ошибка при удалении элемента");
+		}
+	}
+
+	private void EditItem(int id)
+	{
+		Navigation.NavigateTo($"/editItem/{id}");
+	}
+}

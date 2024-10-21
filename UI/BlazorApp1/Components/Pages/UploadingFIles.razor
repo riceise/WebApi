@@ -1,0 +1,72 @@
+﻿@page "/uploadingFiles"
+@inject HttpClient Http
+@using Share.DTOs
+@using BlazorApp1.Components.Helper
+
+
+<h3>Upload XML File</h3>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class="alert alert-success">@successMessage</div>
+}
+
+<div>
+    <InputFile OnChange="OnInputFileChange" />
+</div>
+
+<div>
+    <button class="btn btn-primary" @onclick="SubmitFile">Upload</button>
+</div>
+
+@code {
+    private IBrowserFile selectedFile;
+    private string errorMessage;
+    private string successMessage;
+
+    private void OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.File;
+    }
+
+    private async Task SubmitFile()
+    {
+        errorMessage = string.Empty;
+        successMessage = string.Empty;
+
+        if (selectedFile != null)
+        {
+            try
+            {
+                var content = new MultipartFormDataContent();
+                var fileStream = selectedFile.OpenReadStream();
+                var streamContent = new StreamContent(fileStream);
+                content.Add(streamContent, "file", selectedFile.Name);
+
+                var response = await Http.PostAsync($"{ApiHelper.BaseApiUrl}/api/Convert/UploadXml", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    successMessage = "File uploaded successfully!";
+                }
+                else
+                {
+                    errorMessage = $"Error: {response.ReasonPhrase}";
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"An error occurred: {ex.Message}";
+            }
+            }
+        else
+        {
+            errorMessage = "Please select a file.";
+        }
+    }
+}

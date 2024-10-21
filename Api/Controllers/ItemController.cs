@@ -16,7 +16,7 @@ namespace WebApplication1.Controllers
             _dictionaryService = dictionaryService;
         }
 
-        [HttpGet]
+        [HttpGet("/All")]
         public async Task<IActionResult> GetAll()
         {
             var dictionaryItems = await _dictionaryService.GetAllAsync();
@@ -38,12 +38,13 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateDictionaryRequestDto createDto) 
         {
-            await _dictionaryService.AddAsync(createDto); 
+            var createdItem = await _dictionaryService.AddAsync(createDto); 
+            
         
-            return CreatedAtAction(nameof(GetById), new { id = createDto.Id }, createDto); 
+            return CreatedAtAction(nameof(GetById), new { id = createdItem.Id }, createdItem); 
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Edit/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateDictionaryRequestDto updateDto) 
         {
             var existingItem = await _dictionaryService.GetByIdAsync(id);
@@ -58,7 +59,7 @@ namespace WebApplication1.Controllers
             return Ok(updateDto); 
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var existingItem = await _dictionaryService.GetByIdAsync(id);

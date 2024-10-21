@@ -2,7 +2,7 @@
 {
     public class CreateDictionaryRequestDto
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public DateTime BeginDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Code { get; set; } = string.Empty;

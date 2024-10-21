@@ -1,4 +1,5 @@
-﻿using Share.DTOs;
+﻿using Data.Model;
+using Share.DTOs;
 
 namespace WebApplication1.Services
 {
@@ -6,7 +7,7 @@ namespace WebApplication1.Services
     {
         Task<IEnumerable<DictionaryDto>> GetAllAsync();
         Task<DictionaryDto?> GetByIdAsync(int id);
-        Task AddAsync(CreateDictionaryRequestDto dto);  
+        Task<DictionaryItem> AddAsync(CreateDictionaryRequestDto dto);  
         Task UpdateAsync(UpdateDictionaryRequestDto dto);
         Task DeleteAsync(int id);
     }
