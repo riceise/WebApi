@@ -27,8 +27,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Data\Data.csproj" />
+        <ProjectReference Include="..\Data\Data.csproj" />
       <ProjectReference Include="..\Share\Share.csproj" />
+      
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Api.csproj.user" />
     </ItemGroup>
 
 </Project>

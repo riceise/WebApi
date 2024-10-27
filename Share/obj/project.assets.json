@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Share\\Share.csproj",
+      "projectUniqueName": "D:\\Тфомс\\Git clone\\WebApi\\Share\\Share.csproj",
       "projectName": "Share",
-      "projectPath": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Share\\Share.csproj",
+      "projectPath": "D:\\Тфомс\\Git clone\\WebApi\\Share\\Share.csproj",
       "packagesPath": "C:\\Users\\nabiu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Share\\obj\\",
+      "outputPath": "D:\\Тфомс\\Git clone\\WebApi\\Share\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nabiu\\AppData\\Roaming\\NuGet\\NuGet.Config",

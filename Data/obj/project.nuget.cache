@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oVhLbRj5DzGvOabvKQsOqIP2FiaLr769llnCyqqA834tdjTF8e4XKEkJNcGVOrLei3PuoQcdyk1bsJ7uNAGLXQ==",
+  "dgSpecHash": "AP8BcE/IU2i8hsIwh1663eT/scoBvVcuoeB/ItIFYf/RqJjLRKOdRmVYJE/zozom/9NzuATGty+MiMAb3hq3uw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Data\\Data.csproj",
+  "projectFilePath": "D:\\Тфомс\\Git clone\\WebApi\\Data\\Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nabiu\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\nabiu\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

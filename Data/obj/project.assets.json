@@ -8384,11 +8384,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Data\\Data.csproj",
+      "projectUniqueName": "D:\\Тфомс\\Git clone\\WebApi\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Data\\Data.csproj",
+      "projectPath": "D:\\Тфомс\\Git clone\\WebApi\\Data\\Data.csproj",
       "packagesPath": "C:\\Users\\nabiu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Data\\obj\\",
+      "outputPath": "D:\\Тфомс\\Git clone\\WebApi\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nabiu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8405,8 +8405,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Share\\Share.csproj": {
-              "projectPath": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Share\\Share.csproj"
+            "D:\\Тфомс\\Git clone\\WebApi\\Share\\Share.csproj": {
+              "projectPath": "D:\\Тфомс\\Git clone\\WebApi\\Share\\Share.csproj"
             }
           }
         }
