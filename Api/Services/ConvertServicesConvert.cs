@@ -36,15 +36,14 @@ namespace WebApplication1.Services
                     var xdoc = XDocument.Load(reader);
                     foreach (var element in xdoc.Descendants("zap"))
                     {
-                        var idValue = element.Element("IDCZ")?.Value;
+                        var codeValue = element.Element("IDCZ")?.Value; 
                         var nameValue = element.Element("N_CZ")?.Value;
                         var beginDateValue = element.Element("DATEBEG")?.Value;
                         var endDateValue = element.Element("DATEEND")?.Value;
 
                         DateTime endDate = DateTime.MaxValue;
 
-                        if (int.TryParse(idValue, out int id) && 
-                            DateTime.TryParse(beginDateValue, out DateTime beginDate))
+                        if (DateTime.TryParse(beginDateValue, out DateTime beginDate))
                         {
                             if (!string.IsNullOrEmpty(endDateValue) && !DateTime.TryParse(endDateValue, out endDate))
                             {
@@ -53,7 +52,7 @@ namespace WebApplication1.Services
 
                             var item = new DictionaryDto
                             {
-                                Id = id,
+                                Code = codeValue ?? string.Empty, 
                                 Name = nameValue ?? string.Empty,
                                 BeginDate = DateTime.SpecifyKind(beginDate, DateTimeKind.Utc),
                                 EndDate = DateTime.SpecifyKind(endDate, DateTimeKind.Utc)
@@ -62,7 +61,7 @@ namespace WebApplication1.Services
                         }
                         else
                         {
-                            throw new ArgumentException($"Invalid data in XML: IDCZ={idValue}, N_CZ={nameValue}, DATEBEG={beginDateValue}, DATEEND={endDateValue}");
+                            throw new ArgumentException($"Invalid data in XML: IDCZ={codeValue}, N_CZ={nameValue}, DATEBEG={beginDateValue}, DATEEND={endDateValue}");
                         }
                     }
                 }
@@ -77,68 +76,37 @@ namespace WebApplication1.Services
 
         public async Task SaveToDatabaseAsync(List<DictionaryDto> dictionaryItems)
         {
-            using var transaction = await _context.Database.BeginTransactionAsync(); 
+            using var transaction = await _context.Database.BeginTransactionAsync();
 
             try
             {
-                await _context.DictionaryItems.ExecuteDeleteAsync(); 
+                await _context.DictionaryItems.ExecuteDeleteAsync();
+
+    
 
                 const int batchSize = 100;
                 for (int i = 0; i < dictionaryItems.Count; i += batchSize)
                 {
                     var batch = dictionaryItems.Skip(i).Take(batchSize).Select(dto => new DictionaryItem
                     {
-                        Id = dto.Id,
+
                         BeginDate = dto.BeginDate,
                         EndDate = dto.EndDate,
-                        Name = dto.Name
+                        Name = dto.Name,
+                        Code = dto.Code 
                     }).ToList();
 
                     _context.DictionaryItems.AddRange(batch);
-                    await _context.SaveChangesAsync(); 
+                    await _context.SaveChangesAsync();
                 }
 
                 await transaction.CommitAsync();
             }
-            catch (Exception) 
+            catch (Exception)
             {
-                await transaction.RollbackAsync(); 
-                throw; 
+                await transaction.RollbackAsync();
+                throw;
             }
         }
     }
 }
-// using Share.DTOs;
-// using Data.Model;
-// using WebApplication1.Repositories;
-//
-// namespace WebApplication1.Services
-// {
-//     public class ConvertServicesConvert
-//     {
-//         private readonly DictionaryRepository _dictionaryRepository;
-//
-//         public ConvertServicesConvert(DictionaryRepository dictionaryRepository)
-//         {
-//             _dictionaryRepository = dictionaryRepository;
-//         }
-//
-//         public async Task SaveDictionaryItemsAsync(List<DictionaryDto> dictionaryItems)
-//         {
-//             const int batchSize = 100;
-//             for (int i = 0; i < dictionaryItems.Count; i += batchSize)
-//             {
-//                 var batch = dictionaryItems.Skip(i).Take(batchSize).Select(dto => new DictionaryItem
-//                 {
-//                     Id = dto.Id,
-//                     Name = dto.Name,
-//                     BeginDate = dto.BeginDate,
-//                     EndDate = dto.EndDate
-//                 }).ToList();
-//
-//                 _dictionaryRepository.Add(batch);
-//                 await _dictionaryRepository.SaveChangesAsync();
-//             }
-//         }
-//     }
-// }

@@ -8855,11 +8855,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Api\\Api.csproj",
+      "projectUniqueName": "D:\\Тфомс\\Git clone\\WebApi\\Api\\Api.csproj",
       "projectName": "Api",
-      "projectPath": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Api\\Api.csproj",
+      "projectPath": "D:\\Тфомс\\Git clone\\WebApi\\Api\\Api.csproj",
       "packagesPath": "C:\\Users\\nabiu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Api\\obj\\",
+      "outputPath": "D:\\Тфомс\\Git clone\\WebApi\\Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nabiu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8876,11 +8876,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Data\\Data.csproj": {
-              "projectPath": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Data\\Data.csproj"
+            "D:\\Тфомс\\Git clone\\WebApi\\Data\\Data.csproj": {
+              "projectPath": "D:\\Тфомс\\Git clone\\WebApi\\Data\\Data.csproj"
             },
-            "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Share\\Share.csproj": {
-              "projectPath": "C:\\Users\\nabiu\\RiderProjects\\WebApplication1\\Share\\Share.csproj"
+            "D:\\Тфомс\\Git clone\\WebApi\\Share\\Share.csproj": {
+              "projectPath": "D:\\Тфомс\\Git clone\\WebApi\\Share\\Share.csproj"
             }
           }
         }
@@ -8889,6 +8889,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
