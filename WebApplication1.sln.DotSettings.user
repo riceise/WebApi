@@ -4,6 +4,6 @@
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=189dd3cb_002D01b7_002D43b1_002D91ba_002Df7cbb6e3d5e2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetAll_ReturnsOkResult_WithListOfDictionaryItems" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::C0F8AC65-6DD2-4D4E-A507-997A7E7AED7C::net8.0::WebApplication1.Tests.Controllers.ItemControllerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C0F8AC65-6DD2-4D4E-A507-997A7E7AED7C::net8.0::Tests.UploadXmlTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
