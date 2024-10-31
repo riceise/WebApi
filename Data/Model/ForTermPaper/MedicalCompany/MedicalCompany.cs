@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Data.Model.ForTermPaper
+namespace Data.Model.ForTermPaper.MedicalCompany
 {
     [Table(name: "MedicalCompanies", Schema = "LPU")]
     public class MedicalCompany : BaseEntity
